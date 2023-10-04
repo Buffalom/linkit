@@ -1,16 +1,11 @@
 import type { H3Event } from 'h3'
 import { kv } from '@vercel/kv'
-
-interface Link {
-  url: string
-  calls?: number
-  latestCall?: string
-}
+import { Link } from '~/types/Link'
 
 export default defineEventHandler(async (event: H3Event) => {
   const key = getRouterParam(event, 'key')
 
-  const link = await kv.hgetall<Partial<Link>>(key)
+  const link = await kv.hgetall<Link>(key)
 
   if (link?.url) {
     await sendRedirect(event, link.url, 302)

@@ -26,6 +26,9 @@ dependencies:
   '@vee-validate/rules':
     specifier: ^4.11.3
     version: 4.11.3(vue@3.3.4)
+  '@vercel/kv':
+    specifier: ^0.2.3
+    version: 0.2.3
   '@vueuse/nuxt':
     specifier: ^10.4.1
     version: 10.4.1(nuxt@3.7.0)(vue@3.3.4)
@@ -48,7 +51,7 @@ devDependencies:
     version: 12.1.0(eslint@8.48.0)(typescript@5.2.2)
   '@nuxtjs/i18n':
     specifier: 8.0.0-rc.3
-    version: 8.0.0-rc.3(vue@3.3.4)
+    version: 8.0.0-rc.3(@vercel/kv@0.2.3)(vue@3.3.4)
   '@nuxtjs/tailwindcss':
     specifier: ^6.8.0
     version: 6.8.0(webpack@5.88.2)
@@ -96,7 +99,7 @@ devDependencies:
     version: 9.17.0(eslint@8.48.0)
   nuxt:
     specifier: ^3.7.0
-    version: 3.7.0(@types/node@18.17.12)(eslint@8.48.0)(typescript@5.2.2)
+    version: 3.7.0(@types/node@18.17.12)(@vercel/kv@0.2.3)(eslint@8.48.0)(typescript@5.2.2)
   postcss:
     specifier: ^8.4.29
     version: 8.4.29
@@ -1911,6 +1914,11 @@ packages:
     engines: {node: '>= 16'}
     dev: true
 
+  /@intlify/shared@9.4.1:
+    resolution: {integrity: sha512-A51elBmZWf1FS80inf/32diO9DeXoqg9GR9aUDHFcfHoNDuT46Q+fpPOdj8jiJnSHSBh8E1E+6qWRhAZXdK3Ng==}
+    engines: {node: '>= 16'}
+    dev: true
+
   /@intlify/unplugin-vue-i18n@0.12.3(vue-i18n@9.3.0-beta.26):
     resolution: {integrity: sha512-0riPtSfTM58JmGNMmJho/aHD2z3K24BESYAmkLvKlo61/LbaPvnjYU1DbSbJEm6bSjE2oEjUj+di3QaYxXei/w==}
     engines: {node: '>= 14.16'}
@@ -2203,7 +2211,7 @@ packages:
       '@nuxt/kit': 3.7.0
       '@nuxt/schema': 3.7.0
       execa: 7.2.0
-      nuxt: 3.7.0(@types/node@18.17.12)(eslint@8.48.0)(typescript@5.2.2)
+      nuxt: 3.7.0(@types/node@18.17.12)(@vercel/kv@0.2.3)(eslint@8.48.0)(typescript@5.2.2)
       vite: 4.4.9(@types/node@18.17.12)
     transitivePeerDependencies:
       - rollup
@@ -2255,7 +2263,7 @@ packages:
       launch-editor: 2.6.0
       local-pkg: 0.4.3
       magicast: 0.2.10
-      nuxt: 3.7.0(@types/node@18.17.12)(eslint@8.48.0)(typescript@5.2.2)
+      nuxt: 3.7.0(@types/node@18.17.12)(@vercel/kv@0.2.3)(eslint@8.48.0)(typescript@5.2.2)
       nypm: 0.3.2
       ofetch: 1.3.3
       ohash: 1.1.3
@@ -2475,7 +2483,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n@8.0.0-rc.3(vue@3.3.4):
+  /@nuxtjs/i18n@8.0.0-rc.3(@vercel/kv@0.2.3)(vue@3.3.4):
     resolution: {integrity: sha512-TrJF7OxCK1CcEnKQHcP3VjVnb0K22OdMxdbWOk/kUzD9DX6+hrcrfrQD6W7xDA5pnEhBnsw1pLT2I+DYVpK/gw==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
@@ -2497,7 +2505,7 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.3.0
       unplugin: 1.4.0
-      unstorage: 1.9.0
+      unstorage: 1.9.0(@vercel/kv@0.2.3)
       vue-i18n: 9.3.0-beta.26(vue@3.3.4)
       vue-i18n-routing: 0.13.4(vue-i18n@9.3.0-beta.26)(vue@3.3.4)
     transitivePeerDependencies:
@@ -3282,6 +3290,13 @@ packages:
       unhead: 1.3.9
       vue: 3.3.4
 
+  /@upstash/redis@1.22.0:
+    resolution: {integrity: sha512-sXoJDoEqqik0HbrNE7yRWckOySEFsoBxfRdCgOqkc0w6py19ZZG50SpGkDDEUXSnBqP8VgGYXhWAiBpqxrt5oA==}
+    dependencies:
+      isomorphic-fetch: 3.0.0
+    transitivePeerDependencies:
+      - encoding
+
   /@vee-validate/i18n@4.11.3:
     resolution: {integrity: sha512-9KWyplhcwLVTw1MDnrHFe92xnmGwY93h5dG2Fa8n+zb9brfyzD5j366B+WWMJK86yBEKrStZomBohTLLdnVlxg==}
     dev: false
@@ -3293,6 +3308,14 @@ packages:
     transitivePeerDependencies:
       - vue
     dev: false
+
+  /@vercel/kv@0.2.3:
+    resolution: {integrity: sha512-Wq1+EsRBQmvLlcqCZeYVg1MAARWrnETgLe3Sy3UCqG+zg7LThpkt0YHZe1NN3Aj4IRmCKQamotWrLDdEx+ZB3w==}
+    engines: {node: '>=14.6'}
+    dependencies:
+      '@upstash/redis': 1.22.0
+    transitivePeerDependencies:
+      - encoding
 
   /@vercel/nft@0.23.1:
     resolution: {integrity: sha512-NE0xSmGWVhgHF1OIoir71XAd0W0C1UE3nzFyhpFiMr3rVhetww7NvM1kc41trBsPG37Bh+dE5FYCTMzM/gBu0w==}
@@ -3548,7 +3571,7 @@ packages:
       '@vueuse/core': 10.4.1(vue@3.3.4)
       '@vueuse/metadata': 10.4.1
       local-pkg: 0.4.3
-      nuxt: 3.7.0(@types/node@18.17.12)(eslint@8.48.0)(typescript@5.2.2)
+      nuxt: 3.7.0(@types/node@18.17.12)(@vercel/kv@0.2.3)(eslint@8.48.0)(typescript@5.2.2)
       vue-demi: 0.14.6(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -7137,6 +7160,14 @@ packages:
     engines: {node: '>=16'}
     dev: true
 
+  /isomorphic-fetch@3.0.0:
+    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
+    dependencies:
+      node-fetch: 2.7.0
+      whatwg-fetch: 3.6.19
+    transitivePeerDependencies:
+      - encoding
+
   /isomorphic-ws@5.0.0(ws@8.13.0):
     resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
     peerDependencies:
@@ -7909,7 +7940,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /nitropack@2.6.2:
+  /nitropack@2.6.2(@vercel/kv@0.2.3):
     resolution: {integrity: sha512-gzbxLIhCoQrK+NrgW5Szuo6zzFEU/bqoohimyJ8IkETI3MXlYtLphlW/UVE8pv8UQ0IJ2HzxFpZ7Ldd0+bQ35A==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -7976,7 +8007,7 @@ packages:
       unctx: 2.3.1
       unenv: 1.7.4
       unimport: 3.2.0(rollup@3.28.1)
-      unstorage: 1.9.0
+      unstorage: 1.9.0(@vercel/kv@0.2.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -8245,7 +8276,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /nuxt@3.7.0(@types/node@18.17.12)(eslint@8.48.0)(typescript@5.2.2):
+  /nuxt@3.7.0(@types/node@18.17.12)(@vercel/kv@0.2.3)(eslint@8.48.0)(typescript@5.2.2):
     resolution: {integrity: sha512-y0/xHYqwuJt20r26xezjpr74FLWR144dMpwSxZ/O2XXUrQUnyO7vHm3fEY4vi+miKbf343YMH5B78GXAELO/Vw==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -8288,7 +8319,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.3
       mlly: 1.4.1
-      nitropack: 2.6.2
+      nitropack: 2.6.2(@vercel/kv@0.2.3)
       nuxi: 3.7.2
       nypm: 0.3.2
       ofetch: 1.3.3
@@ -10647,7 +10678,7 @@ packages:
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.5.0
 
-  /unstorage@1.9.0:
+  /unstorage@1.9.0(@vercel/kv@0.2.3):
     resolution: {integrity: sha512-VpD8ZEYc/le8DZCrny3bnqKE4ZjioQxBRnWE+j5sGNvziPjeDlaS1NaFFHzl/kkXaO3r7UaF8MGQrs14+1B4pQ==}
     peerDependencies:
       '@azure/app-configuration': ^1.4.1
@@ -10685,6 +10716,7 @@ packages:
       idb-keyval:
         optional: true
     dependencies:
+      '@vercel/kv': 0.2.3
       anymatch: 3.1.3
       chokidar: 3.5.3
       destr: 2.0.1
@@ -11071,7 +11103,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.27
+      '@intlify/shared': 9.4.1
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.26)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.3.4)
       ufo: 1.3.0
@@ -11201,6 +11233,9 @@ packages:
       - esbuild
       - uglify-js
     dev: true
+
+  /whatwg-fetch@3.6.19:
+    resolution: {integrity: sha512-d67JP4dHSbm2TrpFj8AbO8DnL1JXL5J9u0Kq2xW6d0TFDbCA3Muhdt8orXC22utleTVj7Prqt82baN6RBvnEgw==}
 
   /whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}

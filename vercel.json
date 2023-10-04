@@ -1,0 +1,10 @@
+{
+  "regions": ["fra1"],
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/cms",
+      "destination": "https://REPLACE_ME.novu.ch/cp"
+    }
+  ]
+}

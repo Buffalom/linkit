@@ -1,0 +1,15 @@
+@import 'tailwindcss/base';
+/* @import 'fonts'; */
+@import "_base.css";
+
+@import 'tailwindcss/components';
+@import "_typography.css";
+/*
+@import "_transitions.css";
+@import "_helpers.css";
+@import "_buttons.css";
+@import "_container.css";
+@import "_gradients.css"; */
+
+@import 'tailwindcss/utilities';
+/* @import "_utilities.css"; */

@@ -6,22 +6,22 @@ export default defineEventHandler(async (event: H3Event) => {
   const [_, linkKeys] = await kv.scan(0, { type: 'hash' })
 
   const links: Array<LinkWithKey> = await Promise.all(
-    linkKeys.flatMap(async (key) => {
-      const link = await kv.hgetall<Link>(key)
+    linkKeys
+      .map(async (key) => {
+        const link = await kv.hgetall<Link>(key)
 
-      if (!link) {
-        return []
-      }
+        if (!link) {
+          return null
+        }
 
-      return [
-        {
+        return {
           key,
           calls: 0,
           latestCall: null,
           ...link,
-        },
-      ]
-    })
+        }
+      })
+      .filter(Boolean)
   )
 
   return { data: links }

@@ -20,12 +20,14 @@ async function validatedBody(event: H3Event): Promise<{ email: string }> {
   return body
 }
 
-export default defineEventHandler(async (event: H3Event) => {
-  const { email } = await validatedBody(event)
+export default defineEventHandler(
+  async (event: H3Event): Promise<{ ok: true }> => {
+    const { email } = await validatedBody(event)
 
-  const magicToken = await createMagicToken(email)
+    const magicToken = await createMagicToken(email)
 
-  await sendMagicTokenLink(email, magicToken)
+    await sendMagicTokenLink(email, magicToken)
 
-  return { ok: true }
-})
+    return { ok: true }
+  }
+)

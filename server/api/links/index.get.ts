@@ -1,31 +1,15 @@
 import type { H3Event } from 'h3'
-import { kv } from '@vercel/kv'
-import { Link, LinkWithKey } from '~/types/Link'
 import { requireAuth } from '~/server/utils/session'
+import { getLinks } from '~/server/utils/links'
+import type { LinkWithKey } from '~/types/Link'
+import type { ApiResponseCollection } from '~/types/ApiResponse'
 
-export default defineEventHandler(async (event: H3Event) => {
-  await requireAuth(event)
+export default defineEventHandler(
+  async (event: H3Event): Promise<ApiResponseCollection<LinkWithKey>> => {
+    await requireAuth(event)
 
-  const [_, linkKeys] = await kv.scan(0, { type: 'hash' })
+    const links = await getLinks()
 
-  const links: Array<LinkWithKey> = await Promise.all(
-    linkKeys
-      .map(async (key) => {
-        const link = await kv.hgetall<Link>(key)
-
-        if (!link) {
-          return null
-        }
-
-        return {
-          key,
-          calls: 0,
-          latestCall: null,
-          ...link,
-        }
-      })
-      .filter(Boolean)
-  )
-
-  return { data: links }
-})
+    return { data: links }
+  }
+)

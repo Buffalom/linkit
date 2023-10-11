@@ -1,17 +1,13 @@
 <template>
-  <NuxtLoadingIndicator color="#000" />
+  <div class="flex min-h-[100dvh] flex-col items-stretch">
+    <NuxtLoadingIndicator color="#000" />
 
-  <!-- <Navigation :nav="mainNav" /> -->
+    <main class="flex flex-1 flex-col items-stretch">
+      <NuxtPage />
+    </main>
 
-  <!-- <GlobalToaster /> -->
-
-  <main class="flex-1">
-    <NuxtPage />
-  </main>
-
-  <!-- <AppFooter :nav="footerNav" :meta="metaFooterNav" /> -->
-
-  <DevOnly>
-    <Breaky />
-  </DevOnly>
+    <DevOnly>
+      <Breaky />
+    </DevOnly>
+  </div>
 </template>

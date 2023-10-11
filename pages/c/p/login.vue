@@ -1,12 +1,12 @@
 <template>
-  <div class="flex !min-h-[100dvh] min-h-screen items-center justify-center">
-    <div class="w-full max-w-xl px-4">
+  <div class="flex flex-1 items-center justify-center">
+    <div class="mx-auto w-full max-w-xl px-4">
       <div class="rounded-2xl bg-gradient-to-tr from-violet-600 to-red-400 p-1">
         <form
           class="space-y-8 rounded-xl bg-white px-6 py-8"
           @submit.prevent="submit()"
         >
-          <h1 class="text-3xl font-bold">Login</h1>
+          <h1 class="text-4xl font-bold">Login</h1>
 
           <div class="space-y-6">
             <div class="space-y-1">

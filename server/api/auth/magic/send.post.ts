@@ -17,17 +17,27 @@ async function validatedBody(event: H3Event): Promise<{ email: string }> {
     })
   }
 
+  if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(body.email)) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: `Email must be a valid email address`,
+    })
+  }
+
   return body
 }
 
 export default defineEventHandler(
-  async (event: H3Event): Promise<{ ok: true }> => {
+  async (event: H3Event): Promise<{ ok: true; message: string }> => {
     const { email } = await validatedBody(event)
 
     const magicToken = await createMagicToken(email)
 
     await sendMagicTokenLink(email, magicToken)
 
-    return { ok: true }
+    return {
+      ok: true,
+      message: `Magic link sent to ${email}`,
+    }
   }
 )

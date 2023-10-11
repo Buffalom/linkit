@@ -59,3 +59,11 @@ export async function getLink(
     ...link,
   }
 }
+
+export async function markLinkAsVisited(key: string, link: Link) {
+  await kv.set(`${PREFIX}:${key}`, {
+    ...link,
+    calls: (link.calls || 0) + 1,
+    lastCall: new Date().toISOString(),
+  })
+}

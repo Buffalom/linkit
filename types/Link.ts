@@ -1,7 +1,7 @@
 export interface Link {
   url: string
   calls?: number
-  latestCall?: string | null
+  lastCall?: string | null
 }
 
 export interface LinkWithKey extends Link {

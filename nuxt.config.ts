@@ -26,6 +26,8 @@ export default defineNuxtConfig({
     KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
     KV_REST_API_READ_ONLY_TOKEN: process.env.KV_REST_API_READ_ONLY_TOKEN,
 
+    SPARKPOST_API_KEY: process.env.SPARKPOST_API_KEY,
+
     public: {
       APP_URL: process.env.APP_URL,
     },

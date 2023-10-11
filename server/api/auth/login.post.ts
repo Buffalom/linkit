@@ -1,6 +1,6 @@
-import { randomBytes } from 'crypto'
 import type { H3Event } from 'h3'
 import { kv } from '@vercel/kv'
+import { generateKey } from '~/server/utils/helpers'
 
 async function validatedBody(event: H3Event): { key: string; url: string } {
   const body = await readBody(event)
@@ -22,10 +22,6 @@ async function validatedBody(event: H3Event): { key: string; url: string } {
   return body
 }
 
-function generateSessionKey(): string {
-  return randomBytes(64).toString('hex')
-}
-
 export default defineEventHandler(async (event: H3Event) => {
   const config = useRuntimeConfig()
 
@@ -38,7 +34,7 @@ export default defineEventHandler(async (event: H3Event) => {
     })
   }
 
-  const sessionKey = generateSessionKey()
+  const sessionKey = generateKey()
   const maxAge = 60 * 60 * 24 * 365
 
   await kv.set(`session:${sessionKey}`, '1', { ex: maxAge })

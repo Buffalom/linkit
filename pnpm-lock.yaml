@@ -35,6 +35,9 @@ dependencies:
   eslint-plugin-no-template-curly-in-string-fix:
     specifier: ^1.0.4
     version: 1.0.4
+  nodemailer:
+    specifier: ^6.9.6
+    version: 6.9.6
   nuxt-graphql-client:
     specifier: ^0.2.30
     version: 0.2.30(@types/node@18.17.12)(graphql-tag@2.12.6)
@@ -8093,6 +8096,11 @@ packages:
 
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
+
+  /nodemailer@6.9.6:
+    resolution: {integrity: sha512-s7pDtWwe5fLMkQUhw8TkWB/wnZ7SRdd9HRZslq/s24hlZvBP3j32N/ETLmnqTpmj4xoBZL9fOWyCIZ7r2HORHg==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}

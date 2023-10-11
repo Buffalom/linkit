@@ -1,6 +1,6 @@
 html {
     font-size: clamp(16px, 0.8vw, 28px);
-    @apply text-gray-900;
+    @apply text-violet-900;
 }
 
 body {

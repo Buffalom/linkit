@@ -3,7 +3,7 @@
     <div class="mx-auto w-full max-w-xl px-4">
       <div class="rounded-2xl bg-gradient-to-tr from-violet-600 to-red-400 p-1">
         <form
-          class="space-y-8 rounded-xl bg-white px-6 py-8"
+          class="space-y-8 rounded-xl bg-white p-6"
           @submit.prevent="submit()"
         >
           <h1 class="text-4xl font-bold">Login</h1>
@@ -17,7 +17,7 @@
                 type="email"
                 required
                 placeholder="vader@empire.ch"
-                class="w-full rounded-md border border-gray-600 px-3 py-2 font-medium outline-none focus-visible:ring focus-visible:ring-violet-600"
+                class="w-full rounded-md border-2 border-current px-3 py-2 font-medium outline-none ring-offset-2 focus-visible:ring focus-visible:ring-violet-600"
               />
             </div>
 
@@ -34,7 +34,7 @@
 
             <div>
               <button
-                class="rounded-md bg-gradient-to-tr from-violet-600 to-red-400 px-8 py-2 font-bold text-white outline-none hover:from-violet-500 hover:to-red-400 focus-visible:ring focus-visible:ring-violet-600"
+                class="rounded-md bg-gradient-to-tr from-violet-600 to-red-400 px-8 py-2 font-bold text-white outline-none ring-offset-2 hover:from-violet-500 hover:to-red-400 focus-visible:ring focus-visible:ring-violet-600"
               >
                 Login
               </button>

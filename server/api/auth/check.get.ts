@@ -1,18 +1,8 @@
-import { randomBytes } from 'crypto'
 import type { H3Event } from 'h3'
-import { kv } from '@vercel/kv'
+import { requireAuth } from '~/server/utils/session'
 
 export default defineEventHandler(async (event: H3Event) => {
-  const sessionKey = getCookie(event, 'session')
-
-  const exists = await kv.exists(`session:${sessionKey}`)
-
-  if (!exists) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: `Unauthorized`,
-    })
-  }
+  await requireAuth(event)
 
   return { ok: true }
 })

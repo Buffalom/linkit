@@ -1,8 +1,11 @@
 import type { H3Event } from 'h3'
 import { kv } from '@vercel/kv'
 import { Link, LinkWithKey } from '~/types/Link'
+import { requireAuth } from '~/server/utils/session'
 
 export default defineEventHandler(async (event: H3Event) => {
+  await requireAuth(event)
+
   const [_, linkKeys] = await kv.scan(0, { type: 'hash' })
 
   const links: Array<LinkWithKey> = await Promise.all(

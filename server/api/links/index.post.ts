@@ -1,6 +1,7 @@
 import type { H3Event } from 'h3'
 import { kv } from '@vercel/kv'
 import { Link, LinkWithKey } from '~/types/Link'
+import { requireAuth } from '~/server/utils/session'
 
 async function validatedBody(event: H3Event): { key: string; url: string } {
   const body = await readBody(event)
@@ -39,6 +40,8 @@ async function validatedBody(event: H3Event): { key: string; url: string } {
 }
 
 export default defineEventHandler(async (event: H3Event) => {
+  await requireAuth(event)
+
   const { key, url } = await validatedBody(event)
 
   const link = { url }

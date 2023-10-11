@@ -30,12 +30,19 @@ function initTransporter(apiKey: string) {
 export async function sendMail(mail: Mail) {
   const config = useRuntimeConfig()
 
-  initTransporter(config.apiKey)
-
-  const info = await transporter.sendMail({
+  const completeMail: Mail & { from: string } = {
     ...mail,
     from: 'no-reply@mail.td2.ch',
-  })
+  }
 
-  console.log('Message sent: %s', info.messageId)
+  if (config.SPARKPOST_API_KEY) {
+    initTransporter(config.apiKey)
+
+    const info = await transporter.sendMail(completeMail)
+
+    console.log(`Message sent: ${info.messageId}`)
+  } else {
+    console.log('No SparkPost API key found. Mail not sent.')
+    console.dir(completeMail)
+  }
 }

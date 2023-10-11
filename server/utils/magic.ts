@@ -6,21 +6,21 @@ export interface Payload {
   email: string
 }
 
-const PREFIX = 'magic'
+export const PREFIX = 'magic'
+export const MAX_AGE = 60 * 60 // 1 hour
 
 export async function createMagicToken(email: string) {
-  const magicKey = generateKey()
-  const maxAge = 60 * 60 // 1 hour
+  const token = generateKey()
 
-  await kv.hset<Payload>(`${PREFIX}:${magicKey}`, { email }, { ex: maxAge })
+  await kv.set<Payload>(`${PREFIX}:${token}`, { email }, { ex: MAX_AGE })
 
-  return magicKey
+  return token
 }
 
 export async function sendMagicTokenLink(email: string, token: string) {
   const config = useRuntimeConfig()
 
-  const link = `${config.APP_URL}/auth/magic/${token}`
+  const link = `${config.public.APP_URL}/auth/magic/${token}`
 
   await sendMail({
     to: email,
@@ -31,8 +31,8 @@ export async function sendMagicTokenLink(email: string, token: string) {
   })
 }
 
-export async function validateMagicToken(token: string) {
-  const payload = await kv.hgetall<Payload>(`${PREFIX}:${token}`)
+export async function useMagicToken(token: string): Promise<false | Payload> {
+  const payload = await kv.get<Payload>(`${PREFIX}:${token}`)
 
   if (!payload) {
     return false
@@ -40,5 +40,5 @@ export async function validateMagicToken(token: string) {
 
   await kv.del(`${PREFIX}:${token}`)
 
-  return true
+  return payload
 }

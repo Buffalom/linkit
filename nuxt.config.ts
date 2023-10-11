@@ -19,8 +19,6 @@ export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss'],
 
   runtimeConfig: {
-    APP_PASSWORD: process.env.APP_PASSWORD,
-
     KV_URL: process.env.KV_URL,
     KV_REST_API_URL: process.env.KV_REST_API_URL,
     KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,

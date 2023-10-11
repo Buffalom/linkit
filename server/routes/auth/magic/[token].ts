@@ -1,24 +1,26 @@
 import type { H3Event } from 'h3'
-import { kv } from '@vercel/kv'
-import { generateKey } from '~/server/utils/helpers'
-import { validateMagicToken } from '~/server/utils/magic'
+import { useMagicToken } from '~/server/utils/magic'
+import {
+  MAX_AGE as maxSessionAge,
+  COOKIE_NAME as sessionCookieName,
+  createSessionToken,
+} from '~/server/utils/session'
 
 export default defineEventHandler(async (event: H3Event) => {
   const token = getRouterParam(event, 'token')
 
-  if (token && (await validateMagicToken(token))) {
-    const sessionToken = generateKey()
-    const maxAge = 60 * 60 * 24 * 365
+  const payload = token ? await useMagicToken(token) : false
 
-    await kv.set(`session:${sessionToken}`, '1', { ex: maxAge })
+  if (payload && payload.email) {
+    const sessionToken = await createSessionToken(payload.email)
 
     setCookie(event, 'session', sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge,
+      maxAge: maxSessionAge,
     })
   } else {
-    deleteCookie(event, 'session')
+    deleteCookie(event, sessionCookieName)
   }
 
   await sendRedirect(event, '/c/p', 302)

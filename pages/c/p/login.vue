@@ -53,6 +53,12 @@ type Status =
   | { type: 'error'; message: string }
   | { type: 'success'; message: string }
 
+const { status: authCheckStatus } = await useFetch('/api/auth/check')
+
+if (authCheckStatus.value === 'success') {
+  await navigateTo('/c/p')
+}
+
 const email = ref<string>('')
 const status = ref<Status>({ type: 'idle' })
 
